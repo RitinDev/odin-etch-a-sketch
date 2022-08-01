@@ -72,6 +72,7 @@ body {
 }
 
 .grid-square {
+    /* Dynamically set using JS */
     /* width: 16px; */
     /* height: 16px; */
     /* max-width: 24px; */
