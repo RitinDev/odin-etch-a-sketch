@@ -34,7 +34,7 @@ function reset() {
     grid.childNodes.forEach(square => square.style.backgroundColor = null);
 }
 
-createGrid(16, 16);
+createGrid();
 
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', reset);
