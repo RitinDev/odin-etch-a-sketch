@@ -19,6 +19,16 @@ function createGrid(numRows = 16, numCols = 16) {
     }
 }
 
+function addColor(gridSquare) {
+    if (rainbowColorsMode) {
+        gridSquare.style.backgroundColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
+    } else {
+        let colorSelector = document.querySelector(`input[type="color"]`);
+        let currentColor = colorSelector.value;
+        gridSquare.style.backgroundColor = currentColor;
+    }
+}
+
 function reset() {
     let grid = document.querySelector('.grid');
     grid.childNodes.forEach(square => square.style.backgroundColor = null);
@@ -28,3 +38,9 @@ createGrid(16, 16);
 
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', reset);
+
+let rainbowModeButton = document.getElementById('rainbow-colors-button');
+rainbowModeButton.addEventListener('click', () => {
+    if (rainbowColorsMode) rainbowColorsMode = false;
+    else rainbowColorsMode = true;
+});
