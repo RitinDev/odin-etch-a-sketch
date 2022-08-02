@@ -12,7 +12,7 @@ function createGrid(numRows = 16, numCols = 16) {
             // console.log(gridSquare.style.width);
             // console.log(gridSquare.style.height);
             gridSquare.addEventListener('mouseover', (e) => {
-                addColor(e.target);
+                if (!e.shiftKey) addColor(e.target);
             });
             grid.appendChild(gridSquare);
         }
