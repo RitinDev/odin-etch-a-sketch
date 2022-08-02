@@ -34,6 +34,21 @@ function reset() {
     grid.childNodes.forEach(square => square.style.backgroundColor = null);
 }
 
+function removeGrid() {
+    let grid = document.querySelector('.grid');
+    grid.innerHTML = '';
+}
+
+function upgradeGrid() {
+    let rowsAndCols;
+    let gridSquaresSlider = document.querySelector("#myRange");
+    gridSquaresSlider.addEventListener('change', () => {
+        rowsAndCols = gridSquaresSlider.value;
+        removeGrid();
+        createGrid(rowsAndCols, rowsAndCols);
+    });
+}
+
 createGrid();
 
 let resetButton = document.getElementById('reset');
@@ -44,3 +59,5 @@ rainbowModeButton.addEventListener('click', () => {
     if (rainbowColorsMode) rainbowColorsMode = false;
     else rainbowColorsMode = true;
 });
+
+upgradeGrid();
