@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-left: 250px;
+    margin-left: 200px;
     margin-right: auto;
 }
 
@@ -32,7 +32,7 @@ body {
 
 .buttons #color-picker input {
     margin-left: auto;
-    width: 65%;
+    width: 75%;
 }
 
 .slider {
