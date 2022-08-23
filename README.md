@@ -6,8 +6,8 @@ Learning Outcomes:
 2. Learn more about color input and slider input
 
 Update (08 / 24 / 22):
-    1. Learn more about button styling and responsiveness through pseudo-elements
-    2. Improve overall compactness of layout
+1. Learn more about button styling and responsiveness through pseudo-elements
+2. Improve overall compactness of layout
 
-    ![Before](img/Styling-Before.png)
-    ![After](img/Styling-After.png)
+![Before](img/Styling-Before.png)
+![After](img/Styling-After.png)
