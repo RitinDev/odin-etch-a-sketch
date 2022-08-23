@@ -8,7 +8,7 @@ function createGrid(numRows = 16, numCols = 16) {
             let gridSquare = document.createElement('div');
             gridSquare.classList.add('grid-square');
             gridSquare.style.width = (grid.offsetWidth / numRows) - 2;
-            gridSquare.style.height = (grid.offsetHeight / numCols);
+            gridSquare.style.height = (grid.offsetHeight / numCols) - 2;
             // console.log(gridSquare.style.width);
             // console.log(gridSquare.style.height);
             gridSquare.addEventListener('mouseover', (e) => {
