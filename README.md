@@ -10,7 +10,9 @@ Update (08 / 24 / 22):
 2. Improve overall compactness of layout
 
 Before:
+
 ![Before](img/Styling-Before.png)
 
 After:
+
 ![After](img/Styling-After.png)
