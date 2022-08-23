@@ -1,4 +1,4 @@
-const rainbowColors = ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red'];
+const rainbowColors = ['#CC99FF', '#A9D1F7', '#B4F0A7', '#FFFFBF', '#FFDFBE', '#FFB1B0'];
 let rainbowColorsMode = false;
 
 function createGrid(numRows = 16, numCols = 16) {
@@ -8,9 +8,7 @@ function createGrid(numRows = 16, numCols = 16) {
             let gridSquare = document.createElement('div');
             gridSquare.classList.add('grid-square');
             gridSquare.style.width = (grid.offsetWidth / numRows) - 2;
-            gridSquare.style.height = (grid.offsetHeight / numCols);
-            // console.log(gridSquare.style.width);
-            // console.log(gridSquare.style.height);
+            gridSquare.style.height = (grid.offsetHeight / numCols) - 2;
             gridSquare.addEventListener('mouseover', (e) => {
                 if (!e.shiftKey) addColor(e.target);
             });
@@ -56,8 +54,22 @@ resetButton.addEventListener('click', reset);
 
 let rainbowModeButton = document.getElementById('rainbow-colors-button');
 rainbowModeButton.addEventListener('click', () => {
-    if (rainbowColorsMode) rainbowColorsMode = false;
-    else rainbowColorsMode = true;
+    if (rainbowColorsMode) {
+        rainbowColorsMode = false;
+        rainbowModeButton.classList.remove('clicked');
+        rainbowModeButton.classList.add('not-clicked');
+    } else {
+        rainbowColorsMode = true;
+        rainbowModeButton.classList.remove('not-clicked');
+        rainbowModeButton.classList.add('clicked');
+    }
 });
 
 upgradeGrid();
+
+window.addEventListener('resize', () => {
+    let gridSquaresSlider = document.querySelector("#myRange");
+    rowsAndCols = gridSquaresSlider.value;
+    removeGrid();
+    createGrid(rowsAndCols, rowsAndCols);
+});

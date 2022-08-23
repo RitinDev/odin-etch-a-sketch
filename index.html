@@ -10,16 +10,39 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;">Etch-a-Sketch!</h1>
+    <h1>Etch-a-Sketch!</h1>
     <div class="grid-and-buttons">
         <div class="buttons">
-            <button id="reset">Reset</button>
-            <button id="color-picker">Color<input type="color" value="#ff0000"></button>
-            <button id="rainbow-colors-button">Rainbow Colors</button>
-            <button id="slider-button">Squares Per Row
-                <span>8 <input type="range" min="8" max="64" value="16" class="slider" id="myRange">
-                    64</span></button>
-            <button>Hold <kbd>Shift</kbd> to Pause Drawing</button>
+            <input type="color" value="#000000" id="color-picker">
+            <button class="fancy" id="reset">
+                <span class="top-key"></span>
+                <span class="text">Reset</span>
+                <span class="bottom-key-1"></span>
+                <span class="bottom-key-2"></span>
+            </button>
+
+            <button class="fancy not-clicked" id="rainbow-colors-button">
+                <span class="top-key"></span>
+                <span class="text">Rainbow Colors</span>
+                <span class="bottom-key-1"></span>
+                <span class="bottom-key-2"></span>
+            </button>
+
+            <button class="fancy" id="slider-button">
+                <span class="top-key"></span>
+                <span class="text">Squares Per Row<input type="range" min="8" max="64" value="16" class="slider"
+                        id="myRange">
+                </span>
+                <span class="bottom-key-1"></span>
+                <span class="bottom-key-2"></span>
+            </button>
+
+            <button class="fancy">
+                <span class="top-key"></span>
+                <span class="text">Hold <kbd>Shift</kbd> to Pause Drawing</span>
+                <span class="bottom-key-1"></span>
+                <span class="bottom-key-2"></span>
+            </button>
         </div>
         <div class="grid"></div>
     </div>
