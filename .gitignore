@@ -1,0 +1,16 @@
+# Django project files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Django media files
+media/
+
+# Django virtualenv
+.venv/
+
+# Django secret key
+secrets.json
