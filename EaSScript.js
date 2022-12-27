@@ -1,34 +1,7 @@
 const rainbowColors = ['#CC99FF', '#A9D1F7', '#B4F0A7', '#FFFFBF', '#FFDFBE', '#FFB1B0'];
 let rainbowColorsMode = false;
-let rowsAndCols = document.querySelector("#myRange").value;
-let colorMap = []
 
-function createMap(numRows, numCols) {
-    colorMap = [];
-    for (let i = 0; i < numRows; i++) {
-        colorMap[i] = [];
-        for (let j = 0; j < numCols; j++) {
-            colorMap[i][j] = null;
-        }
-    }
-}
-
-function storeGrid() {
-    localStorage.setItem('grid', JSON.stringify(colorMap));
-}
-
-function retrieveGrid() {
-    let retrievedGrid = JSON.parse(localStorage.getItem('grid'));
-    if (retrievedGrid) {
-        colorMap = retrievedGrid;
-    } else {
-        createMap(rowsAndCols, rowsAndCols);
-    }
-}
-
-retrieveGrid();
-
-function createGrid(numRows, numCols) {
+function createGrid(numRows = 16, numCols = 16) {
     let grid = document.querySelector('.grid');
     for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
@@ -36,38 +9,27 @@ function createGrid(numRows, numCols) {
             gridSquare.classList.add('grid-square');
             gridSquare.style.width = (grid.offsetWidth / numRows) - 2;
             gridSquare.style.height = (grid.offsetHeight / numCols) - 2;
-            gridSquare.style.backgroundColor = colorMap[i][j];
             gridSquare.addEventListener('mouseover', (e) => {
-                if (!e.shiftKey) addColor(e.target, i, j);
+                if (!e.shiftKey) addColor(e.target);
             });
             grid.appendChild(gridSquare);
         }
     }
 }
 
-function addColor(gridSquare, i, j) {
+function addColor(gridSquare) {
     if (rainbowColorsMode) {
-        const random_color = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
-        gridSquare.style.backgroundColor = random_color;
-        colorMap[i][j] = random_color;
+        gridSquare.style.backgroundColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
     } else {
         let colorSelector = document.querySelector(`input[type="color"]`);
         let currentColor = colorSelector.value;
         gridSquare.style.backgroundColor = currentColor;
-        colorMap[i][j] = currentColor;
     }
-    storeGrid();
 }
 
 function reset() {
     let grid = document.querySelector('.grid');
     grid.childNodes.forEach(square => square.style.backgroundColor = null);
-    for (let i = 0; i < colorMap.length; i++) {
-        for (let j = 0; j < colorMap[i].length; j++) {
-            colorMap[i][j] = null;
-        }
-    }
-    storeGrid();
 }
 
 function removeGrid() {
@@ -81,12 +43,11 @@ function upgradeGrid() {
     gridSquaresSlider.addEventListener('change', () => {
         rowsAndCols = gridSquaresSlider.value;
         removeGrid();
-        createMap(rowsAndCols, rowsAndCols);
         createGrid(rowsAndCols, rowsAndCols);
     });
 }
 
-createGrid(rowsAndCols, rowsAndCols);
+createGrid();
 
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', reset);
