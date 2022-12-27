@@ -12,7 +12,21 @@ function createMap(numRows, numCols) {
         }
     }
 }
-createMap(rowsAndCols, rowsAndCols);
+
+function storeGrid() {
+    localStorage.setItem('grid', JSON.stringify(colorMap));
+}
+
+function retrieveGrid() {
+    let retrievedGrid = JSON.parse(localStorage.getItem('grid'));
+    if (retrievedGrid) {
+        colorMap = retrievedGrid;
+    } else {
+        createMap(rowsAndCols, rowsAndCols);
+    }
+}
+
+retrieveGrid();
 
 function createGrid(numRows, numCols) {
     let grid = document.querySelector('.grid');
@@ -42,6 +56,7 @@ function addColor(gridSquare, i, j) {
         gridSquare.style.backgroundColor = currentColor;
         colorMap[i][j] = currentColor;
     }
+    storeGrid();
 }
 
 function reset() {
@@ -52,6 +67,7 @@ function reset() {
             colorMap[i][j] = null;
         }
     }
+    storeGrid();
 }
 
 function removeGrid() {
