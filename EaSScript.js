@@ -3,6 +3,20 @@ let rainbowColorsMode = false;
 let rowsAndCols = document.querySelector("#myRange").value;
 let colorMap = []
 
+function storeSize() {
+    localStorage.setItem('rowsAndCols', JSON.stringify(rowsAndCols));
+}
+
+function retrieveSize() {
+    let retrievedSize = JSON.parse(localStorage.getItem('rowsAndCols'));
+    if (retrievedSize) {
+        rowsAndCols = retrievedSize;
+    }
+    document.querySelector("#myRange").value = rowsAndCols;
+}
+
+retrieveSize();
+
 function createMap(numRows, numCols) {
     colorMap = [];
     for (let i = 0; i < numRows; i++) {
@@ -56,6 +70,7 @@ function addColor(gridSquare, i, j) {
         gridSquare.style.backgroundColor = currentColor;
         colorMap[i][j] = currentColor;
     }
+    storeSize();
     storeGrid();
 }
 
@@ -67,6 +82,7 @@ function reset() {
             colorMap[i][j] = null;
         }
     }
+    storeSize();
     storeGrid();
 }
 
@@ -76,10 +92,10 @@ function removeGrid() {
 }
 
 function upgradeGrid() {
-    let rowsAndCols;
     let gridSquaresSlider = document.querySelector("#myRange");
     gridSquaresSlider.addEventListener('change', () => {
         rowsAndCols = gridSquaresSlider.value;
+        storeSize();
         removeGrid();
         createMap(rowsAndCols, rowsAndCols);
         createGrid(rowsAndCols, rowsAndCols);
