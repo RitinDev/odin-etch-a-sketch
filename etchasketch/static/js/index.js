@@ -1,7 +1,20 @@
 const rainbowColors = ['#CC99FF', '#A9D1F7', '#B4F0A7', '#FFFFBF', '#FFDFBE', '#FFB1B0'];
 let rainbowColorsMode = false;
+let rowsAndCols = document.querySelector("#myRange").value;
+let colorMap = []
 
-function createGrid(numRows = 16, numCols = 16) {
+function createMap(numRows, numCols) {
+    colorMap = [];
+    for (let i = 0; i < numRows; i++) {
+        colorMap[i] = [];
+        for (let j = 0; j < numCols; j++) {
+            colorMap[i][j] = null;
+        }
+    }
+}
+createMap(rowsAndCols, rowsAndCols);
+
+function createGrid(numRows, numCols) {
     let grid = document.querySelector('.grid');
     for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
@@ -9,27 +22,36 @@ function createGrid(numRows = 16, numCols = 16) {
             gridSquare.classList.add('grid-square');
             gridSquare.style.width = (grid.offsetWidth / numRows) - 2;
             gridSquare.style.height = (grid.offsetHeight / numCols) - 2;
+            gridSquare.style.backgroundColor = colorMap[i][j];
             gridSquare.addEventListener('mouseover', (e) => {
-                if (!e.shiftKey) addColor(e.target);
+                if (!e.shiftKey) addColor(e.target, i, j);
             });
             grid.appendChild(gridSquare);
         }
     }
 }
 
-function addColor(gridSquare) {
+function addColor(gridSquare, i, j) {
     if (rainbowColorsMode) {
-        gridSquare.style.backgroundColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
+        const random_color = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
+        gridSquare.style.backgroundColor = random_color;
+        colorMap[i][j] = random_color;
     } else {
         let colorSelector = document.querySelector(`input[type="color"]`);
         let currentColor = colorSelector.value;
         gridSquare.style.backgroundColor = currentColor;
+        colorMap[i][j] = currentColor;
     }
 }
 
 function reset() {
     let grid = document.querySelector('.grid');
     grid.childNodes.forEach(square => square.style.backgroundColor = null);
+    for (let i = 0; i < colorMap.length; i++) {
+        for (let j = 0; j < colorMap[i].length; j++) {
+            colorMap[i][j] = null;
+        }
+    }
 }
 
 function removeGrid() {
@@ -43,11 +65,12 @@ function upgradeGrid() {
     gridSquaresSlider.addEventListener('change', () => {
         rowsAndCols = gridSquaresSlider.value;
         removeGrid();
+        createMap(rowsAndCols, rowsAndCols);
         createGrid(rowsAndCols, rowsAndCols);
     });
 }
 
-createGrid();
+createGrid(rowsAndCols, rowsAndCols);
 
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', reset);
