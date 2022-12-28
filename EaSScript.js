@@ -54,6 +54,9 @@ function createGrid(numRows, numCols) {
             gridSquare.addEventListener('mouseover', (e) => {
                 if (!e.shiftKey) addColor(e.target, i, j);
             });
+            gridSquare.addEventListener('click', (e) => {
+                addColor(e.target, i, j);
+            });
             grid.appendChild(gridSquare);
         }
     }
