@@ -31,8 +31,8 @@ function storeGrid() {
     localStorage.setItem('grid', JSON.stringify(colorMap));
 }
 
-function retrieveGrid() {
-    let retrievedGrid = JSON.parse(localStorage.getItem('grid'));
+async function retrieveGrid() {
+    let retrievedGrid = await JSON.parse(localStorage.getItem('grid'));
     if (retrievedGrid) {
         colorMap = retrievedGrid;
     } else {
@@ -40,9 +40,9 @@ function retrieveGrid() {
     }
 }
 
-retrieveGrid();
 
-function createGrid(numRows, numCols) {
+async function createGrid(numRows, numCols) {
+    await retrieveGrid();
     let grid = document.querySelector('.grid');
     for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
