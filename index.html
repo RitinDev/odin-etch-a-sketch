@@ -11,41 +11,45 @@
 </head>
 
 <body>
-    <h1>Etch-a-Sketch!</h1>
-    <div class="grid-and-buttons">
-        <div class="buttons">
-            <input type="color" value="#000000" id="color-picker">
-            <button class="fancy" id="reset">
-                <span class="top-key"></span>
-                <span class="text">Reset</span>
-                <span class="bottom-key-1"></span>
-                <span class="bottom-key-2"></span>
-            </button>
+    <div class="project-container">
+        <h1>Etch-a-Sketch!</h1>
+        <div class="grid-and-buttons">
+            <div class="buttons">
+                <div class="color-picker-container">
+                    <input type="color" value="#000000" id="color-picker">
+                </div>
+                <button class="fancy" id="reset">
+                    <span class="top-key"></span>
+                    <span class="text">Reset</span>
+                    <span class="bottom-key-1"></span>
+                    <span class="bottom-key-2"></span>
+                </button>
 
-            <button class="fancy not-clicked" id="rainbow-colors-button">
-                <span class="top-key"></span>
-                <span class="text">Rainbow Colors</span>
-                <span class="bottom-key-1"></span>
-                <span class="bottom-key-2"></span>
-            </button>
+                <button class="fancy not-clicked" id="rainbow-colors-button">
+                    <span class="top-key"></span>
+                    <span class="text">Rainbow Colors</span>
+                    <span class="bottom-key-1"></span>
+                    <span class="bottom-key-2"></span>
+                </button>
 
-            <button class="fancy" id="slider-button">
-                <span class="top-key"></span>
-                <span class="text">Squares Per Row<input type="range" min="8" max="64" value="16" class="slider"
-                        id="myRange">
-                </span>
-                <span class="bottom-key-1"></span>
-                <span class="bottom-key-2"></span>
-            </button>
+                <button class="fancy" id="slider-button">
+                    <span class="top-key"></span>
+                    <span class="text">Squares Per Row<input type="range" min="8" max="64" value="16" class="slider"
+                            id="myRange">
+                    </span>
+                    <span class="bottom-key-1"></span>
+                    <span class="bottom-key-2"></span>
+                </button>
 
-            <button class="fancy">
-                <span class="top-key"></span>
-                <span class="text">Hold <kbd>Shift</kbd> to Pause Drawing</span>
-                <span class="bottom-key-1"></span>
-                <span class="bottom-key-2"></span>
-            </button>
+                <button class="fancy" id="shift-hold-info">
+                    <span class="top-key"></span>
+                    <span class="text">Hold <kbd>Shift</kbd> to Pause Drawing</span>
+                    <span class="bottom-key-1"></span>
+                    <span class="bottom-key-2"></span>
+                </button>
+            </div>
+            <div class="grid"></div>
         </div>
-        <div class="grid"></div>
     </div>
 </body>
 
